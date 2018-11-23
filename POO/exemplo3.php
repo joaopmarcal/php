@@ -55,13 +55,13 @@
         }
  
         return true;
-    }
-		}
+    	}
 	}
+}
 /*
 	$cpf = new Documento();
 	$cpf->setNumero("56656644636");
 	var_dump($cpf->getNumero());
 */
-var_dump(Documento::validarCPF("468154"));
+var_dump(Documento::validarCPF("41555555555"));
 ?>

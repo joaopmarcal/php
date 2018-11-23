@@ -8,9 +8,7 @@
 		
 		public function getModelo(){
 			return $this -> modelo;
-			
 		}
-		
 		public function setModelo($modelo){
 			$this->modelo = $modelo;
 		}
@@ -38,6 +36,6 @@ $gol = new Carro();
 $gol->setModelo("Gol GT");
 $gol->setMotor("1.6");
 $gol->setAno("2017");
-var_dump($gol->exibir());
+print_r(($gol->exibir()));
 
 ?>
