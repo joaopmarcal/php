@@ -1,9 +1,9 @@
 {
-    "name": "hcodebr/ecommerce",
+    "name": "joaopmarcal/PHP",
     "authors": [
         {
-            "name": "Hcode Treinamentos",
-            "email": "suporte@hcode.com.br"
+            "name": "João Paulo",
+            "email": "paulospc21@gmail.com"
         }
     ],
     "require": {
