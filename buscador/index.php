@@ -1,17 +1,34 @@
 <?php
 
-    echo $nome = $_GET['nome'];
-    echo PHP_EOL;
-    echo $idade = $_GET['idade'];
-    echo PHP_EOL;
-    echo $sexo = $_GET['sexo'];
-    echo PHP_EOL;
     require_once __DIR__ . "/classConectar.php";
-    if($sexo == ""){
-        echo "está vazio";
+
+    if (isset($_GET['nome']) or isset($_GET['idade']) or isset($_GET['sexo'])){
+        $data = new Conectar();
+        $data->query($_GET['nome'],$_GET['idade'],$_GET['sexo']);
+
     }
 
-    $conexao = new Conectar("localhost","pessoa","joao","joao");
+
+
+
+    if($sexo == ""){
+        //echo "está vazio";
+    }
+    //$data = Conectar::selectAll();
+    //echo $data['nome'];
+    //$mysqli = new mysqli("localhost", "joao", "joao", "pessoa");
+    //$mysqli = new Conectar("localhost","pessoa","joao","joao");
+    //echo $data[0]["nome"];
+    //$query = "select * from buscador where nome = 'joao' and idade = 18 and sexo = 'masculino'";
+    //$result = $mysqli->query($query);
+    //$result = $mysqli->query("select * from buscador where nome = 'joao' and idade = 18 and sexo = 'masculino'");
+
+
+    //$result->fetch_array();
+    //mysqli_free_result($result);
+    //var_dump($result);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
