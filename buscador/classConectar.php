@@ -25,6 +25,14 @@
             return $data;
         }
 
+        static function selectOne($id){
+            $mysqli = self::connect();
+            $query = "select * from buscador where id = $id";
+            $result = mysqli_query($mysqli,$query);
+            $row = mysqli_fetch_assoc($result);
+            return $row;
+        }
+
         public function querySearch($nome,$idade,$sexo){
             $mysqli = self::connect();
 
@@ -85,6 +93,32 @@
 
         }
 
+        static function update($nome,$idade,$sexo,$id){
+            $mysqli = self::connect();
+            $query = "update buscador set nome = ?, idade = ?, sexo = ? where id = $id";
+            $stmt = $mysqli->prepare($query);
+            $stmt->bind_param("sis",$nome,$idade,$sexo);
+            $stmt->execute();
+            header('Location: index.php');
+            /*var_dump($query);
+            echo $_POST['nome'];
+            echo $_POST['idade'];
+            echo $_POST['sexo'];
+            */
+        }
 
+        static function delete($id){
+            $mysqli = self::connect();
+            $query = "delete from buscador where id = ?";
+            $stmt = $mysqli->prepare($query);
+            $stmt->bind_param("i",$id);
+            $stmt->execute();
+            header('Location: index.php');
+            /*var_dump($query);
+            echo $_POST['nome'];
+            echo $_POST['idade'];
+            echo $_POST['sexo'];
+            */
+        }
 
     }

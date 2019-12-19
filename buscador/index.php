@@ -21,6 +21,7 @@
 <head>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/096d1fd918.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -86,6 +87,8 @@
             <th scope="col">Nome</th>
             <th scope="col">Idade</th>
             <th scope="col">Sexo</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Excluir</th>
         </tr>
         </thead>
         <tbody>
@@ -95,6 +98,8 @@
         <td><?= $results['nome']; ?></td>
         <td><?= $results['idade']; ?></td>
         <td><?= $results['sexo']; ?></td>
+        <td><a href="edit.php?id=<?= $results['id']; ?>"><i class="fas fa-user-edit"></i></a></td>
+        <td><a href="delete.php?id=<?= $results['id']; ?>"><i class="fas fa-trash"></i></td>
     </tr>
     <?php } ?>
     </tbody>
