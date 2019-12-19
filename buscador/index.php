@@ -4,24 +4,10 @@
 
     if (isset($_GET['nome']) or isset($_GET['idade']) or isset($_GET['sexo'])){
         $data = new Conectar();
-        $data->query($_GET['nome'],$_GET['idade'],$_GET['sexo']);
-
+        $result = $data->querySearch($_GET['nome'],$_GET['idade'],$_GET['sexo']);
     }
 
-
-
-
-    if($sexo == ""){
-        //echo "está vazio";
-    }
-    //$data = Conectar::selectAll();
-    //echo $data['nome'];
-    //$mysqli = new mysqli("localhost", "joao", "joao", "pessoa");
-    //$mysqli = new Conectar("localhost","pessoa","joao","joao");
     //echo $data[0]["nome"];
-    //$query = "select * from buscador where nome = 'joao' and idade = 18 and sexo = 'masculino'";
-    //$result = $mysqli->query($query);
-    //$result = $mysqli->query("select * from buscador where nome = 'joao' and idade = 18 and sexo = 'masculino'");
 
 
     //$result->fetch_array();
@@ -33,22 +19,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Exemplo de Crud</title>
 </head>
 <body>
-    <h1>Buscardor profissional</h1>
-    <a href="">Adicionar</a>
-    <form action="" method="get">
-        NOME: <input type="text" name="nome">
-        <br>
-        IDADE: <input type="number" name="idade">
-        <br>
-        SEXO: <input type="text" name="sexo">
-        <br>
-        <input type="submit" value="buscar">
-    </form>
+    <h1 class="text-center">Buscador profissional</h1>
+    <h2 class="text-center">Três maneiras diferentes de se buscar</h2>
+    <div>
+        <h3 class="text-center"><a href="add.php" class="">Adicionar</a></h3>
+        <form action="" method="get">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="nome">Nome:</label>
+                    <input type="text" class="form-control" id="nome" name="nome">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="idade">Idade:</label>
+                    <input type="number" class="form-control" id="idade" name="idade">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="sexo">Sexo:</label>
+                    <select name="sexo" id="sexo" class="form-control">
+                        <option value="">selecione</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                    </select>
+                </div>
+                <br>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+    <div class="space"></div>
+    <?php if (isset($result)){ ?>
+    <a href="index.php">limpar lista</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Idade</th>
+            <th scope="col">Sexo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($result as $results){ ?>
+        <tr>
+            <th scope="row"><?= $results['id']; ?></th>
+            <td><?= $results['nome']; ?></td>
+            <td><?= $results['idade']; ?></td>
+            <td><?= $results['sexo']; ?></td>
+        </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+    <?php }else {
+        $dataTable = Conectar::selectAll();?>
+        <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Idade</th>
+            <th scope="col">Sexo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($dataTable as $results){ ?>
+    <tr>
+        <th scope="row"><?= $results['id']; ?></th>
+        <td><?= $results['nome']; ?></td>
+        <td><?= $results['idade']; ?></td>
+        <td><?= $results['sexo']; ?></td>
+    </tr>
+    <?php } ?>
+    </tbody>
+    </table>
+    <?php } ?>
 </body>
 </html>

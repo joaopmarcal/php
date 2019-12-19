@@ -25,7 +25,7 @@
             return $data;
         }
 
-        public function query($nome,$idade,$sexo){
+        public function querySearch($nome,$idade,$sexo){
             $mysqli = self::connect();
 
             if ($nome != "" and $idade != "" and $sexo != ""){
@@ -49,9 +49,39 @@
             if ($nome == "" and $idade == "" and $sexo != ""){
                 $data = $mysqli->query("select * from buscador where sexo = '$sexo'");
             }
+            if ($nome == "" and $idade == "" and $sexo == ""){
+                return;
+            }
             //var_dump($data);
             $data = $data->fetch_all(MYSQLI_ASSOC);
             return $data;
+
+        }
+
+        public function add($nome,$idade,$sexo){
+            $mysqli = self::connect();
+            $stmt = $mysqli->prepare("INSERT INTO buscador(nome, idade, sexo) VALUES (?,?,?)");
+            $stmt->bind_param("sis",$nome,$idade,$sexo);
+            $stmt->execute();
+            /*
+            $conn = new mysqli("localhost","root","","dbphp7");
+
+            if ($conn->connect_error) {
+                echo "Error: " . $conn->connect_error;
+            }
+            $stmt = $conn->prepare("INSERT INTO tb_usuarios (deslogin,dessenha) VALUES (?,?)");
+
+            $stmt->bind_param("ss", $login, $pass);
+            $login = "joao";
+            $pass = "98745";
+            $stmt->execute();
+            $login = "paulo";
+            $pass = "78546";
+            $stmt->execute();
+            $login = "Dario";
+            $pass = "25694";
+            $stmt->execute();
+            */
 
         }
 
