@@ -22,6 +22,7 @@
     <title>Exemplo de Crud</title>
 </head>
 <body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
     <h1 class="text-center">Buscador profissional</h1>
     <h2 class="text-center">Três maneiras diferentes de se buscar</h2>
     <div>
@@ -102,6 +103,27 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/Popper.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script>
+        //Get the button
+        var mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
     <?php
         $data = new Estatistica();
         $result = $data->percentageMan();
