@@ -44,7 +44,7 @@
             </div>
             <br>
         </div>
-        <button type="submit" class="btn btn-primary">Adicionar</button>
+        <button type="submit" class="button btn btn-primary">Adicionar</button>
     </form>
 </div>
 </body>

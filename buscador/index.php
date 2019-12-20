@@ -1,19 +1,13 @@
 <?php
 
     require_once __DIR__ . "/classConectar.php";
+    require_once __DIR__ . "/classEstatistica.php";
 
     if (isset($_GET['nome']) or isset($_GET['idade']) or isset($_GET['sexo'])){
         $data = new Conectar();
         $result = $data->querySearch($_GET['nome'],$_GET['idade'],$_GET['sexo']);
     }
-
-    //echo $data[0]["nome"];
-
-
-    //$result->fetch_array();
-    //mysqli_free_result($result);
-    //var_dump($result);
-
+    //unlink("teste.php");
 
 ?>
 <!DOCTYPE html>
@@ -52,7 +46,7 @@
                 </div>
                 <br>
             </div>
-            <button type="submit" class="btn btn-primary">Buscar</button>
+            <button type="submit" class="button btn btn-primary">Buscar</button>
         </form>
     </div>
     <div class="space"></div>
@@ -105,5 +99,41 @@
     </tbody>
     </table>
     <?php } ?>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/Popper.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <?php
+        $data = new Estatistica();
+        $result = $data->percentageMan();
+    ?>
+    <h5 class="text-center">Estatistica segundo o banco de dados</h5>
+    <p class="text-center">Homens</p>
+    <div class="container">
+        <div class="skills" style="width: <?= $result ?>%; background-color: #4CAF50;"><?= number_format($result,2) ?>%</div>
+    </div>
+    <?php
+    $data = new Estatistica();
+    $result = $data->percentageWoman();
+    ?>
+    <p class="text-center">Mulheres</p>
+    <div class="container">
+        <div class="skills" style="width: <?= $result ?>%; background-color: #2196F3;"><?= number_format($result,2) ?>%</div>
+    </div>
+    <?php
+    $data = new Estatistica();
+    $result = $data->percentageAgeCountPlus();
+    ?>
+    <p class="text-center">Acima ou igual a 40 anos</p>
+    <div class="container">
+        <div class="skills" style="width: <?= $result ?>%; background-color: #f44336;"><?= number_format($result,2) ?>%</div>
+    </div>
+    <?php
+    $data = new Estatistica();
+    $result = $data->percentageAgeCountMinus();
+    ?>
+    <p class="text-center">Abaixo dos 40 anos</p>
+    <div class="container">
+        <div class="skills" style="width: <?= $result ?>%; background-color: #808080;"><?= number_format($result,2) ?>%</div>
+    </div>
 </body>
 </html>
