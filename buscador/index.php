@@ -1,10 +1,10 @@
 <?php
 
-    require_once __DIR__ . "/classConectar.php";
     require_once __DIR__ . "/classEstatistica.php";
+    require_once __DIR__ . "/classSearch.php";
 
     if (isset($_GET['nome']) or isset($_GET['idade']) or isset($_GET['sexo'])){
-        $data = new Conectar();
+        $data = new Search();
         $result = $data->querySearch($_GET['nome'],$_GET['idade'],$_GET['sexo']);
     }
     //unlink("teste.php");
@@ -22,6 +22,14 @@
     <title>Exemplo de Crud</title>
 </head>
 <body>
+    <div class="header">
+        <a href="#default" class="logo"><img src="img/PHP-logo.svg.png" class="logo-image" alt=""></a>
+        <div class="header-right">
+            <a class="active" href="index.php">Home</a>
+            <a href="rating.php">Rating</a>
+            <a href="#about">About</a>
+        </div>
+    </div>
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
     <h1 class="text-center">Buscador profissional</h1>
     <h2 class="text-center">Três maneiras diferentes de se buscar</h2>
@@ -74,7 +82,7 @@
         </tbody>
     </table>
     <?php }else {
-        $dataTable = Conectar::selectAll();?>
+        $dataTable = Search::selectAll();?>
         <table class="table">
         <thead>
         <tr>
