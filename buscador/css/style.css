@@ -198,3 +198,7 @@ body {
     max-width: 80%;
     text-align-last: center;
 }
+
+.margin {
+    margin: 5px;
+}

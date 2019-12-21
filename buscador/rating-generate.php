@@ -34,7 +34,7 @@
 <body>
 <form class="form-inline" action="rating-generate.php?1=1" method="post">
     <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Gerar números de Rating</label>
-    <select class="custom-select my-1 mr-sm-2" name="gerar" id="inlineFormCustomSelectPref">
+    <select class="custom-select my-1 mr-sm-2" name="gerar" id="inlineFormCustomSelectPref myInput">
         <option selected>Escolher...</option>
         <option value="50">50</option>
         <option value="100">100</option>
@@ -42,6 +42,7 @@
         <option value="250">250</option>
         <option value="500">500</option>
     </select>
+    <button class="btn btn-danger margin" onclick="document.getElementById('myInput').value = ''">Clear</button>
     <div class="custom-control custom-checkbox my-1 mr-sm-2">
         <input type="checkbox" name="marcado" class="custom-control-input" id="customControlInline">
         <label class="custom-control-label" for="customControlInline">Gerar apenas 50 ratings 5 estrelas</label>
