@@ -4,8 +4,12 @@
     require_once __DIR__ . "/classSearch.php";
 
     if (isset($_GET['nome']) or isset($_GET['idade']) or isset($_GET['sexo'])){
-        $data = new Search();
-        $result = $data->querySearch($_GET['nome'],$_GET['idade'],$_GET['sexo']);
+        if (preg_match('/^[a-zA-ZÀ-Úà-ú]+$/',$search = $_GET['nome'],$matches) or preg_match('/[1-9]/',$searchTwo = $_GET['idade'],$matches) or preg_match('/[a-z]/',$searchTwo = $_GET['sexo'],$matches)){
+            $data = new Search();
+            $result = $data->querySearch($_GET['nome'], $_GET['idade'], $_GET['sexo']);
+        }else{
+            $ok = "notok";
+        }
     }
     //unlink("teste.php");
 
@@ -81,7 +85,9 @@
         <?php } ?>
         </tbody>
     </table>
-    <?php }else {
+    <?php } else if ($ok == "notok"){
+        echo "<h3 style='color: #ff1e3a'>Por favor verifique os dados passados</h3>";
+    }else {
         $dataTable = Search::selectAll();?>
         <table class="table">
         <thead>
