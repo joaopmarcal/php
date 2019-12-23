@@ -61,6 +61,8 @@
     $cpf = '411.494.128/28';
     $cpf = preg_replace("/[^0-9]/", "", $cpf);
     echo $cpf;
+    echo "<br>";
+    echo $cont = strlen($cpf);
 
 ?>
     </pre>

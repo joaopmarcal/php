@@ -3,10 +3,16 @@
     require_once __DIR__ . "/classEstatistica.php";
     require_once __DIR__ . "/classSearch.php";
 
+    $ok = "";
+
     if (isset($_GET['nome']) or isset($_GET['idade']) or isset($_GET['sexo'])){
-        if (preg_match('/^[a-zA-ZÀ-Úà-ú]+$/',$search = $_GET['nome'],$matches) or preg_match('/[1-9]/',$searchTwo = $_GET['idade'],$matches) or preg_match('/[a-z]/',$searchTwo = $_GET['sexo'],$matches)){
-            $data = new Search();
-            $result = $data->querySearch($_GET['nome'], $_GET['idade'], $_GET['sexo']);
+        if (preg_match('/^[a-zA-ZÀ-Úà-ú]+$/',$search = $_GET['nome'],$matches) or preg_match('/[1-9]/',$searchTwo = $_GET['idade'],$matches) or preg_match('/masculino|feminino/',$searchTwo = $_GET['sexo'],$matches)){
+            if(strlen($search) >=3){
+                $data = new Search();
+                $result = $data->querySearch($_GET['nome'], $_GET['idade'], $_GET['sexo']);
+            } else{
+                $ok = "notokay";
+            }
         }else{
             $ok = "notok";
         }
@@ -87,7 +93,9 @@
     </table>
     <?php } else if ($ok == "notok"){
         echo "<h3 style='color: #ff1e3a'>Por favor verifique os dados passados</h3>";
-    }else {
+    }elseif($ok == "notokay") {
+        echo "<h3 style='color: #ff1e3a'>O nome deve ter pelo menos três caracteres</h3>";
+    }else{
         $dataTable = Search::selectAll();?>
         <table class="table">
         <thead>
